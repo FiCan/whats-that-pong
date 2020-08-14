@@ -37,11 +37,34 @@ body {
   padding: 0 15px;
 }
 
+/* GAME OVER AREA */
+#gameOverArea {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  justify-content: center; /* horizontal align */
+  align-items: center; /* vertical align */
+}
+
+#gameOverArea h1,
+#gameOverArea h2 {
+  text-align: center;
+  margin: 0;
+}
+
+#gameOverBox {
+  border: solid 1px white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* GAME AREA */
 #gameArea {
   width: 100%;
   height: 100%;
   border: solid 1px white;
-  position: relative;
+  position: fixed;
   display: none;
 }
 

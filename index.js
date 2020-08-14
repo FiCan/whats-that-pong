@@ -17,6 +17,7 @@ let ballSpeedX = 0;
 let ballSpeedY = 0;
 let leftScore = 0;
 let rightScore = 0;
+const winningScore = 2;
 
 function handleKeyPress(event) {
   switch (event.key) {
@@ -94,11 +95,11 @@ function moveBall() {
     ballSpeedY *= -1;
   }
   if (ballLeft < 0) {
-    leftScore++;
+    rightScore++;
     goalScored();
   }
   if (ballLeft > gameArea.clientWidth - ball.clientWidth) {
-    rightScore++;
+    leftScore++;
     goalScored();
   }
 }
@@ -124,9 +125,13 @@ function checkPaddleCollision() {
 function goalScored() {
   ballSpeedX = 0;
   ballSpeedY = 0;
-  setTimeout(resetBall, 2000);
   document.getElementById("leftScore").innerText = leftScore;
   document.getElementById("rightScore").innerText = rightScore;
+  if (leftScore === winningScore || rightScore === winningScore) {
+    gameOver();
+  } else {
+    setTimeout(resetBall, 2000);
+  }
 }
 
 function setBallPosition() {
@@ -138,10 +143,17 @@ function startGame() {
   document.getElementById("welcomeArea").style.display = "none";
   document.getElementById("gameArea").style.display = "flex";
   resetBall();
-  console.log("ballPosition", ballLeft, ballTop);
   setTimeout(function () {
     setInterval(moveBall, 1000 / 30);
   }, 2000);
+}
+
+function gameOver() {
+  ballSpeedX = 0;
+  ballSpeedY = 0;
+  document.getElementById("gameOverArea").style.display = "flex";
+  document.getElementById("winnerName").innerText =
+    leftScore === winningScore ? "Lefty!!!" : "Righty!!!";
 }
 
 window.addEventListener("keypress", handleKeyPress);
