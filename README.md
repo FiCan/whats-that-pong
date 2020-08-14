@@ -23,3 +23,4 @@ npm start
 - Fix ball speed and angles for consistency
 - Add speed levels increments over time
 - Add start new game button at game over view
+- YAY!
