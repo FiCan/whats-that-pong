@@ -1,4 +1,4 @@
-const gameArea = document.getElementsByClassName("gameArea")[0];
+const gameArea = document.getElementById("gameArea");
 const paddleLeft = document.getElementById("left");
 const paddleRight = document.getElementById("right");
 const ball = document.getElementById("ball");
@@ -9,6 +9,7 @@ const paddleLeftLeft = 15;
 let paddleRightTop = 0;
 const paddleWidth = 10;
 
+// const ballBaseSpeed = 3;
 let ballTop = 0;
 let ballLeft = 0;
 const ballWidth = 10;
@@ -47,13 +48,29 @@ function handleKeyPress(event) {
   paddleRight.style.top = paddleRightTop + "px";
 }
 
+// TODO: Come back to this
+// function getRandomBallSpeed() {
+//   const speed = ballBaseSpeed;
+//   const quandrant = randomRange(0, 3);
+//   const angle = randomRange(10, 80) + 90 * quandrant;
+//   const x = Math.cos(angle) * speed;
+//   const y = Math.cos(angle) * speed;
+//   return {
+//     x,
+//     y,
+//   };
+// }
+
 function resetBall() {
   ballLeft = gameArea.clientWidth / 2 - ball.clientWidth / 2;
   ballTop = gameArea.clientHeight / 2 - ball.clientHeight / 2;
   setBallPosition();
-  ballSpeedX = randomRange(13, 17);
+  // const newSpeed = getRandomBallSpeed();
+  // ballSpeedX = newSpeed.x;
+  // ballSpeedY = newSpeed.y;
+  ballSpeedX = randomRange(3, 20);
   ballSpeedX = Math.random() > 0.5 ? ballSpeedX : -ballSpeedX;
-  ballSpeedY = randomRange(13, 17);
+  ballSpeedY = randomRange(3, 20);
   ballSpeedY = Math.random() > 0.5 ? ballSpeedY : -ballSpeedY;
 }
 
@@ -118,9 +135,16 @@ function setBallPosition() {
 }
 
 function startGame() {
-  setInterval(moveBall, 1000 / 30);
+  document.getElementById("welcomeArea").style.display = "none";
+  document.getElementById("gameArea").style.display = "flex";
+  resetBall();
+  console.log("ballPosition", ballLeft, ballTop);
+  setTimeout(function () {
+    setInterval(moveBall, 1000 / 30);
+  }, 2000);
 }
 
 window.addEventListener("keypress", handleKeyPress);
+document.getElementById("startButton").addEventListener("click", startGame);
 resetBall();
-setTimeout(startGame, 500);
+// setTimeout(startGame, 500);
