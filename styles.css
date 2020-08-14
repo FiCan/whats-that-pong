@@ -40,3 +40,17 @@ div.paddle {
   width: 10px;
   height: 10px;
 }
+
+/* SCOREBOARD */
+#scores {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#scores h1 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}

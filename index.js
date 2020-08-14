@@ -14,6 +14,8 @@ let ballLeft = 0;
 const ballWidth = 10;
 let ballSpeedX = 0;
 let ballSpeedY = 0;
+let leftScore = 0;
+let rightScore = 0;
 
 function handleKeyPress(event) {
   switch (event.key) {
@@ -49,9 +51,9 @@ function resetBall() {
   ballLeft = gameArea.clientWidth / 2 - ball.clientWidth / 2;
   ballTop = gameArea.clientHeight / 2 - ball.clientHeight / 2;
   setBallPosition();
-  ballSpeedX = randomRange(3, 7);
+  ballSpeedX = randomRange(13, 17);
   ballSpeedX = Math.random() > 0.5 ? ballSpeedX : -ballSpeedX;
-  ballSpeedY = randomRange(3, 7);
+  ballSpeedY = randomRange(13, 17);
   ballSpeedY = Math.random() > 0.5 ? ballSpeedY : -ballSpeedY;
 }
 
@@ -75,9 +77,11 @@ function moveBall() {
     ballSpeedY *= -1;
   }
   if (ballLeft < 0) {
+    leftScore++;
     goalScored();
   }
   if (ballLeft > gameArea.clientWidth - ball.clientWidth) {
+    rightScore++;
     goalScored();
   }
 }
@@ -104,6 +108,8 @@ function goalScored() {
   ballSpeedX = 0;
   ballSpeedY = 0;
   setTimeout(resetBall, 2000);
+  document.getElementById("leftScore").innerText = leftScore;
+  document.getElementById("rightScore").innerText = rightScore;
 }
 
 function setBallPosition() {

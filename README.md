@@ -8,7 +8,7 @@ npm start
 
 ## To do list:
 
-- Add scores
+- ~~Add scores~~
 - Add welcome
 - Add start button
 - Update controls to allow holding buttons
